@@ -5,10 +5,10 @@ const { addUser, getUserById } = require("../api/users/users-model");
 
 const router = express.Router();
 
-router.post("/", async (req, res, next) => {
+router.post("/register", async (req, res, next) => {
   try {
     const user = req.body;
-    const hash = bcrypt.hashSync(user.password);
+    const hash = bcrypt.hashSync(user.password, 5);
 
     const [id] = await addUser({ ...user, password: hash });
     const addedUser = await getUserById(id);
