@@ -6,7 +6,7 @@ const knexSessionStore = require("connect-session-knex")(session);
 
 const usersRouter = require("./users/users-router");
 const authRouter = require("../auth/auth-router");
-const restricted = require("../auth/restricted");
+const restricted = require("../auth/restricted-middleware");
 
 const server = express();
 
