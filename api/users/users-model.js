@@ -1,5 +1,7 @@
 const db = require("../../database/dbConfig.js");
 
-const getUsers = db("users");
+const addUser = newUser => db("users").insert(newUser);
 
-module.exports = { getUsers };
+const getUserById = id => db("users").where({ id }).first();
+
+module.exports = { addUser, getUserById };
