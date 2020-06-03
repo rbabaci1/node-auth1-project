@@ -10,13 +10,25 @@ const restricted = require("../auth/restricted-middleware");
 
 const server = express();
 
+const HALF_HOUR = 1000 * 60 * 30;
+
+const {
+  NODE_ENV = "development",
+  SESS_NAME = "rabah_session",
+  SESS_SECRET = "north african guy",
+  SESS_LIFETIME = HALF_HOUR,
+} = process.env;
+
+const IN_PROD = NODE_ENV === "production";
+
 const sessionConfig = {
-  name: "Rabah's session",
-  secret: "North african guy",
+  name: SESS_NAME,
+  secret: SESS_SECRET,
   cookie: {
-    maxAge: 1000 * 60 * 30,
+    maxAge: SESS_LIFETIME,
     httpOnly: true,
-    secure: false, // should be true in production
+    secure: IN_PROD,
+    sameSite: true,
   },
   // forces the session to be saved to the session store,
   // even the session was never modified during the request
@@ -29,7 +41,7 @@ const sessionConfig = {
     tablename: "sessions",
     sidfieldname: "sid",
     createtable: true,
-    clearInterval: 1000 * 60 * 30,
+    clearInterval: HALF_HOUR,
   }),
 };
 
