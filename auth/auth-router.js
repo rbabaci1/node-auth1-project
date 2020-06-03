@@ -11,7 +11,7 @@ router.post("/register", async (req, res) => {
     const hash = bcrypt.hashSync(user.password, 12);
 
     const [id] = await addUser({ ...user, password: hash });
-    const addedUser = await findBy(id);
+    const addedUser = await findBy({ id });
 
     res.status(201).json(addedUser);
   } catch ({ errno, code, message }) {
@@ -38,7 +38,26 @@ router.post("/login", async (req, res) => {
     }
   } catch ({ errno, code, message }) {
     res.status(500).json({
-      message: "You can't login at this moment.",
+      message: "You shall not pass!",
+      errno,
+      code,
+      reason: message,
+    });
+  }
+});
+
+router.delete("/logout", async (req, res) => {
+  try {
+    if (req.session) {
+      req.session.destroy(error => {
+        error
+          ? res.status(400).json({ message: "Error logging out", error })
+          : res.status(200).json({ message: "Logged out. Good bye!" });
+      });
+    }
+  } catch ({ errno, code, message }) {
+    res.status(500).json({
+      message: "You shall not logout!",
       errno,
       code,
       reason: message,
