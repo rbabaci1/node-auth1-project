@@ -22,11 +22,20 @@ const sessionConfig = {
   resave: false,
   //Forces a session that is "uninitialized" to be saved to the store
   saveUninitialized: false,
+
+  store: new knexSessionStore({
+    knex: require("../database/dbConfig"),
+    tablename: "sessions",
+    sidfieldname: "sid",
+    createtable: true,
+    clearInterval: 1000 * 60 * 30,
+  }),
 };
 
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
+server.use(session(sessionConfig));
 
 server.use("/api/users", usersRouter);
 server.use("/api/auth", authRouter);
