@@ -6,6 +6,7 @@ const knexSessionStore = require("connect-session-knex")(session);
 
 const usersRouter = require("./users/users-router");
 const authRouter = require("../auth/auth-router");
+const restricted = require("../auth/restricted");
 
 const server = express();
 
@@ -20,7 +21,7 @@ const sessionConfig = {
   // forces the session to be saved to the session store,
   // even the session was never modified during the request
   resave: false,
-  //Forces a session that is "uninitialized" to be saved to the store
+  // Forces a session that is "uninitialized" to be saved to the store
   saveUninitialized: false,
 
   store: new knexSessionStore({
@@ -37,7 +38,7 @@ server.use(helmet());
 server.use(cors());
 server.use(session(sessionConfig));
 
-server.use("/api/users", usersRouter);
+server.use("/api/users", restricted, usersRouter);
 server.use("/api/auth", authRouter);
 
 module.exports = server;
