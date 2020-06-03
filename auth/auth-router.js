@@ -28,7 +28,7 @@ router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const user = await findBy(username);
+    const user = await findBy({ username });
 
     if (user && bcrypt.compareSync(password, user.password)) {
       req.session.authenticated = true;

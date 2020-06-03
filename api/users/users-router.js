@@ -4,7 +4,7 @@ const { getUsers } = require("./users-model");
 
 const router = express.Router();
 
-router.get("/", async (req, res, next) => {
+router.get("/", async (req, res) => {
   try {
     const users = await getUsers();
 
