@@ -3,7 +3,13 @@ exports.seed = function (knex) {
     .del()
     .then(function () {
       return knex("users").insert([
-        { id: 1, username: "Kyla Gifford", password: "1997" },
+        {
+          id: 1,
+          firstName: "Kyla",
+          lastName: "Gifford",
+          username: "Kyla97",
+          password: "1997",
+        },
       ]);
     });
 };

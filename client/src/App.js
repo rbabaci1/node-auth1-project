@@ -1,18 +1,30 @@
-import React from "react";
-import { Route, NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
 
 import Form from "./components/Form";
+import Users from "./components/Users";
 
 function App() {
-  const handleLogin = () => {};
+  const history = useHistory();
 
-  const handleSignup = (e, userInfo) => {
-    e.preventDefault();
+  const handleLogin = userInfo => {
+    axios
+      .post("http://localhost:5000/api/auth/login", userInfo)
+      .then(res => {
+        if (res.status === 200) {
+          history.push("/users");
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
 
+  const handleSignup = userInfo => {
     axios
       .post("http://localhost:5000/api/auth/register", userInfo)
-      .then(r => console.log(r))
+      .then(r => history.push("/users"))
       .catch(err => console.error(err));
   };
 

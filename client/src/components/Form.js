@@ -9,6 +9,7 @@ const initialState = {
 
 export default function Form({ type, onSubmit }) {
   const [formInfo, setFormInfo] = useState(initialState);
+  const { username, password } = formInfo;
 
   const handleChange = e => {
     setFormInfo({
@@ -17,14 +18,15 @@ export default function Form({ type, onSubmit }) {
     });
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(type === "Login" ? { username, password } : formInfo);
+    setFormInfo(initialState);
+  };
+
   return (
     <div className="form-wrapper">
-      <form
-        onSubmit={e => {
-          onSubmit(e, formInfo);
-          setFormInfo(initialState);
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <h2>{type}</h2>
 
         {type === "Signup" && (
@@ -34,6 +36,7 @@ export default function Form({ type, onSubmit }) {
               type="text"
               placeholder="First Name"
               name="firstName"
+              value={formInfo.firstName}
               required
             />
 
@@ -42,6 +45,7 @@ export default function Form({ type, onSubmit }) {
               type="text"
               placeholder="Last Name"
               name="lastName"
+              value={formInfo.lastName}
               required
             />
           </div>
@@ -53,6 +57,7 @@ export default function Form({ type, onSubmit }) {
           type="text"
           placeholder="Username"
           name="username"
+          value={formInfo.username}
           required
         />
 
@@ -62,6 +67,7 @@ export default function Form({ type, onSubmit }) {
           type="text"
           placeholder="Password"
           name="password"
+          value={formInfo.password}
           required
         />
 
