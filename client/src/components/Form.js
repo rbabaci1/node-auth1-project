@@ -19,7 +19,12 @@ export default function Form({ type, onSubmit }) {
 
   return (
     <div className="form-wrapper">
-      <form onSubmit={e => onSubmit(e, formInfo)}>
+      <form
+        onSubmit={e => {
+          onSubmit(e, formInfo);
+          setFormInfo(initialState);
+        }}
+      >
         <h2>{type}</h2>
 
         {type === "Signup" && (

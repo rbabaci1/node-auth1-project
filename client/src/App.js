@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, NavLink } from "react-router-dom";
+import axios from "axios";
 
 import Form from "./components/Form";
 
@@ -8,7 +9,11 @@ function App() {
 
   const handleSignup = (e, userInfo) => {
     e.preventDefault();
-    console.log(userInfo);
+
+    axios
+      .post("http://localhost:5000/api/auth/register", userInfo)
+      .then(r => console.log(r))
+      .catch(err => console.error(err));
   };
 
   return (
