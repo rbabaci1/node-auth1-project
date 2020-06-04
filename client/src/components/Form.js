@@ -7,7 +7,7 @@ const initialState = {
   password: "",
 };
 
-export default function Form({ type, onSubmit }) {
+export default function Form({ type, isLoading, error, onSubmit }) {
   const [formInfo, setFormInfo] = useState(initialState);
   const { username, password } = formInfo;
 
@@ -27,6 +27,7 @@ export default function Form({ type, onSubmit }) {
   return (
     <div className="form-wrapper">
       <form onSubmit={handleSubmit}>
+        {error && <p>{error}</p>}
         <h2>{type}</h2>
 
         {type === "Signup" && (
@@ -71,7 +72,7 @@ export default function Form({ type, onSubmit }) {
           required
         />
 
-        <button>{type}</button>
+        <button disabled={isLoading}>{isLoading ? "Loading..." : type}</button>
       </form>
     </div>
   );
