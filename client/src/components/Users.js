@@ -14,6 +14,7 @@ export default function Users() {
 
   return (
     <div className="users">
+      <h1>Welcome to Users!</h1>
       {users.map(user => (
         <div className="user-card">
           <h2>

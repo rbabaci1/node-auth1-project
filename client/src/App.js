@@ -4,8 +4,10 @@ import axios from "axios";
 
 import Form from "./components/Form";
 import Users from "./components/Users";
+import ProtectedUsers from "./PrivateRoutes/ProtectedUsers";
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(true);
   const history = useHistory();
 
   const handleLogin = userInfo => {
@@ -13,6 +15,7 @@ function App() {
       .post("http://localhost:5000/api/auth/login", userInfo)
       .then(res => {
         if (res.status === 200) {
+          setAuthenticated(true);
           history.push("/users");
         }
       })
@@ -40,12 +43,20 @@ function App() {
       </div>
 
       <Route
+        exact
         path="/login"
         render={() => <Form type="Login" onSubmit={handleLogin} />}
       />
       <Route
+        exact
         path="/signup"
         render={() => <Form type="Signup" onSubmit={handleSignup} />}
+      />
+
+      <ProtectedUsers
+        path="/users"
+        authenticated={authenticated}
+        component={Users}
       />
     </div>
   );

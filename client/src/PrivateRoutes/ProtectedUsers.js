@@ -9,7 +9,7 @@ export default function ProtectedUsers({
   return (
     <Route
       {...rest}
-      render={
+      render={() =>
         authenticated ? <Component {...rest} /> : <Redirect to="/login" />
       }
     />
