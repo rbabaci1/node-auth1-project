@@ -19,21 +19,19 @@ export default function Form({ type, onSubmit }) {
 
   return (
     <div className="form-wrapper">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={e => onSubmit(e, formInfo)}>
         <h2>{type}</h2>
 
         {type === "Signup" && (
           <div className="fullName">
-            <label>
-              Enter First Name:
-              <input
-                onChange={handleChange}
-                type="text"
-                placeholder="First Name"
-                name="firstName"
-                required
-              />
-            </label>
+            <input
+              onChange={handleChange}
+              type="text"
+              placeholder="First Name"
+              name="firstName"
+              required
+            />
+
             <input
               onChange={handleChange}
               type="text"

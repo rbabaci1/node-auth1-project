@@ -27,13 +27,43 @@ code {
     margin: 0;
   }
 
+  .links {
+    text-align: end;
+    margin: 20px 0;
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 22px;
+      margin: 20px;
+    }
+
+    .active {
+      border-bottom: 1px solid;
+    }
+  }
+
   .form-wrapper {
     // border: 1px solid #fff;
     display: flex;
     justify-content: center;
 
+    .fullName {
+      border: 1px solid rgb(80, 79, 79);
+      display: flex;
+      margin-bottom: 20px;
+
+      input {
+        margin: 10px;
+      }
+    }
+
     h2 {
-      color: goldenrod;
+      color: rgb(231, 178, 62);
+      background-color: rgba(52, 59, 59, 0.8);
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 5px 0;
     }
 
     form {
@@ -52,6 +82,7 @@ code {
         font-size: 24px;
         margin: 20px 0;
         padding: 7px 5px;
+        background-color: rgb(245, 243, 243);
       }
       button {
         font-size: 24px;
