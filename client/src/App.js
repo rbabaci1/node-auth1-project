@@ -7,7 +7,7 @@ import Users from "./components/Users";
 import ProtectedUsers from "./PrivateRoutes/ProtectedUsers";
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -23,6 +23,7 @@ function App() {
           "http://localhost:5000/api/auth/login",
           userInfo
         );
+        console.log(res);
 
         setAuthenticated(true);
         history.push("/users");
@@ -44,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Welcome home</h1>
+      <Route exact path="/" render={() => <h1>Welcome home</h1>} />
 
       <div className="nav-bar">
         <section className="left-arrow">

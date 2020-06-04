@@ -28,8 +28,8 @@ const sessionConfig = {
     maxAge: SESS_LIFETIME,
     httpOnly: true,
     secure: IN_PROD,
-    sameSite: true,
   },
+  //sameSite: true,
   // forces the session to be saved to the session store,
   // even the session was never modified during the request
   resave: false,
@@ -46,8 +46,8 @@ const sessionConfig = {
 };
 
 server.use(express.json());
-server.use(helmet());
-server.use(cors());
+// server.use(helmet());
+server.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 server.use(session(sessionConfig));
 
 server.use("/api/users", restricted, usersRouter);
