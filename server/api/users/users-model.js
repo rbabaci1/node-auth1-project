@@ -1,6 +1,9 @@
 const db = require("../../database/dbConfig.js");
 
-const addUser = newUser => db("users").insert(newUser);
+const addUser = async newUser => {
+  const [id] = await db("users").insert(newUser);
+  return findBy({ id });
+};
 
 const findBy = filter => db("users").where(filter).first();
 
