@@ -13,7 +13,7 @@ const server = express();
 const HALF_HOUR = 1000 * 60 * 30;
 
 const {
-  NODE_ENV = "development",
+  NODE_ENV = "production",
   SESS_NAME = "rabah_session",
   SESS_SECRET = "north african guy",
   SESS_LIFETIME = HALF_HOUR,
@@ -29,7 +29,7 @@ const sessionConfig = {
     httpOnly: true,
     secure: IN_PROD,
   },
-  sameSite: true,
+  sameSite: "lax",
   // forces the session to be saved to the session store,
   // even the session was never modified during the request
   resave: false,
