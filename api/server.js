@@ -46,8 +46,8 @@ const sessionConfig = {
 };
 
 server.use(express.json());
-// server.use(helmet());
-server.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+server.use(helmet());
+server.use(cors());
 server.use(session(sessionConfig));
 
 server.use("/api/users", restricted, usersRouter);
