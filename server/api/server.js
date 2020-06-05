@@ -27,9 +27,9 @@ const sessionConfig = {
   cookie: {
     maxAge: SESS_LIFETIME,
     httpOnly: true,
-    secure: true,
+    secure: IN_PROD,
   },
-  //sameSite: true,
+  sameSite: true,
   // forces the session to be saved to the session store,
   // even the session was never modified during the request
   resave: false,
