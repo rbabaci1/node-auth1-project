@@ -39,7 +39,7 @@ function App() {
   const handleSignup = userInfo => {
     axios
       .post("http://localhost:5000/api/auth/register", userInfo)
-      .then(r => history.push("/users"))
+      .then(r => console.log(r))
       .catch(err => console.error(err));
   };
 
@@ -50,7 +50,9 @@ function App() {
       <div className="nav-bar">
         <section className="left-arrow">
           <Link to="/">
-            <span>⬅️</span>
+            <span role="img" aria-label="arrow">
+              ⬅️
+            </span>
           </Link>
         </section>
 
