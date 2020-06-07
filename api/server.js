@@ -29,12 +29,11 @@ const sessionConfig = {
     httpOnly: true,
     secure: IN_PROD,
   },
-  sameSite: "lax",
   // forces the session to be saved to the session store,
   // even the session was never modified during the request
-  resave: false,
+  resave: true,
   // Forces a session that is "uninitialized" to be saved to the store
-  saveUninitialized: false,
+  saveUninitialized: true,
 
   store: new knexSessionStore({
     knex: require("../database/dbConfig"),
