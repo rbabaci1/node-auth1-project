@@ -46,7 +46,7 @@ const sessionConfig = {
 };
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://auth-with-tokens.netlify.app",
   credentials: true,
 };
 
