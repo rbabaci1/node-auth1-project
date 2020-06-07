@@ -46,7 +46,7 @@ const sessionConfig = {
 };
 
 const corsOptions = {
-  origin: "https://auth-with-tokens.netlify.app",
+  origin: "https://test-auth.netlify.app",
   credentials: true,
 };
 
